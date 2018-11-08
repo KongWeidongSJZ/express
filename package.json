@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/KongWeidongSJZ/express#readme",
   "dependencies": {
+    "@koa/cors": "^2.2.2",
     "koa": "^2.6.1",
     "koa-router": "^7.4.0",
     "mysql2": "^1.6.1",

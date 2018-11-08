@@ -1,16 +1,18 @@
 var Koa=require('koa'),
     app=new Koa(),
-    pool=require('./app/db/sequelize-connection'),
-    router=require('koa-router')();
-router.get('/',function(ctx,next){
-    return ctx.body='这是一次测试';
+    router=require('./app/router/router'),
+    pool=require('./app/db/sequelize-connection');
+app.use(async (ctx,next)=>{
+    ctx.set('Access-Control-Allow-Origin','*');
+    ctx.set('Access-Control-Allow-Methods','GET,HEAD,PUT,POST,DELETE,PATCH');
+    await next()
 });
 app.use(router.routes());
 app.use(router.allowedMethods());
 
 app.listen(3005,function(err){
     if(err){
-        console.log(err)
+        console.log(err);
         return
     }
     console.log('监听3005成功')

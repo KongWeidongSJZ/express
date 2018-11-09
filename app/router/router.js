@@ -15,7 +15,7 @@ router.post('/member/register', async (ctx) => {
     ctx.body = await getInfo();
 });
 router.get('/', function (ctx) {
-    ctx.body = JSON.stringify(ctx.body)
+    ctx.body='hello world'
 });
 
 module.exports = router;

@@ -1,21 +1,19 @@
-const router = require('koa-router')();
+const router = require('koa-router')(),
+    config = require('../../config');
 router.post('/member/register', async (ctx) => {
-    function getInfo() {
-        return new Promise(function (res, rej) {
-            setTimeout(function () {
-                res({
-                    result: 0,
-                    content: {
-                        a: 1
-                    }
-                })
-            }, 1000)
-        });
-    }
-    ctx.body = await getInfo();
+    await ctx.db.User.findAndCountAll().then((user) => {
+        if (user) {
+            return ctx.body = config.SUCCESS({
+                content: user
+            })
+        }
+    })
+
 });
 router.get('/', function (ctx) {
-    ctx.body = 'hello world'
+});
+router.get('/create', function (ctx) {
+    ctx.body = 'create'
 });
 
 module.exports = router;

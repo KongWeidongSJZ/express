@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize'),
-    sequelize = new Sequelize('mysql', 'root', 'root', {
+    sequelize = new Sequelize('test', 'root', 'root', {
         host: '127.0.0.1',
         dialect: 'mysql',
         pool: {
@@ -9,9 +9,4 @@ const Sequelize = require('sequelize'),
             idle: 10000
         },
     });
-sequelize.authenticate().then(()=>{
- console.log('Connetion has been established successfully .')
-},(err)=>{
-    console.error('Unable to connect to the database:', err)
-});
-module.exports=sequelize;
+module.exports = sequelize;

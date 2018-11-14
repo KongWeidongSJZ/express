@@ -14,19 +14,21 @@ router.post('/member/register', async (ctx) => {
     }).catch((err)=>{
         ctx.body=err
     })
-    // await ctx.db.User.findAndCountAll().then((user) => {
-    //     if (user) {
-    //         return ctx.body = config.SUCCESS({
-    //             content: user
-    //         })
-    //     }
-    // })
 });
 router.get('/', function (ctx) {
 });
 router.get('/create', function (ctx) {
     console.log('同步库里不存在的表');
-    ctx.body = 'create'
+    sequelize.import('user', UserModel);
+    sequelize.sync().then(()=>{
+        ctx.body = 'create'
+    }).catch((err)=>{
+        ctx.body=err
+    });
+});
+router.get('/remove', function (ctx) {
+    console.log('删除表中数据');
+    ctx.db.User.destroy()
 });
 
 module.exports = router;

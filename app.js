@@ -21,10 +21,6 @@ app.use(function(ctx ,next){
     return next()
 });
 app.use(async (ctx,next)=>{
-    if(ctx.path=='/create'){
-        sequelize.import('user', UserModel);
-        sequelize.sync();
-    }
     ctx.db={};
     ctx.db.User=UserModel(sequelize);
     return next()

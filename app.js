@@ -36,5 +36,5 @@ app.listen(3005,function(err){
         console.log(err);
         return
     }
-    console.log('监听3005成功')
+    console.log('3005 success')
 });

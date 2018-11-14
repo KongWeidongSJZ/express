@@ -8,11 +8,10 @@ router.post('/member/register', async (ctx) => {
             })
         }
     })
-
 });
-router.get('/', function (ctx) {
-});
+router.get('/', function (ctx) {});
 router.get('/create', function (ctx) {
+    console.log('同步库里不存在的表');
     ctx.body = 'create'
 });
 

@@ -9,9 +9,9 @@ module.exports = function (sequelize, DataTypes) {
         email: {
             type: Sequelize.STRING,
             allowNull: false,
+            defaultValue: '',
             validate: {
-                notNull: {
-                    args: true,
+                notEmpty: {
                     msg: '缺少必填项'
                 }
             }
@@ -19,9 +19,9 @@ module.exports = function (sequelize, DataTypes) {
         password: {
             type: Sequelize.STRING,
             allowNull: false,
+            defaultValue: '',
             validate: {
-                notNull: {
-                    args: true,
+                notEmpty: {
                     msg: '缺少必填项'
                 }
             }

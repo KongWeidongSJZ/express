@@ -1,3 +1,4 @@
+//mysql的连接方式
 const msq = require('mysql'),
     config = {
         connectionLimit : 10,

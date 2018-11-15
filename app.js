@@ -6,6 +6,7 @@ var Koa=require('koa'),
     UserModel=require('./app/db/UserModel'),
     CONFIG=require('./config');
 app.use(async (ctx,next)=>{
+    ctx.appConfig=CONFIG;
     ctx.set('Access-Control-Allow-Origin',CONFIG.AccessControlAllowOrigin);
     ctx.set('Access-Control-Allow-Methods',CONFIG.AccessControlAllowMethods);
     await next()

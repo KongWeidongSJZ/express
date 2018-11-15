@@ -21,8 +21,16 @@ app.use(function(ctx ,next){
     return next()
 });
 app.use(async (ctx,next)=>{
-    ctx.db={};
-    ctx.db.User=UserModel(sequelize);
+    if(ctx.path=='/create'){
+        UserModel(sequelize);
+        await sequelize.sync({force:true}).then(()=>{
+            ctx.body='success'
+        }).catch(()=>{
+            ctx.body='fail'
+        });
+    }
+    UserModel(sequelize);
+    ctx.sequelize=sequelize;
     return next()
 });
 app.use(router.routes());

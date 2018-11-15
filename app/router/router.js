@@ -17,18 +17,12 @@ router.post('/member/register', async (ctx) => {
 });
 router.get('/', function (ctx) {
 });
-router.get('/create', function (ctx) {
-    console.log('同步库里不存在的表');
-    sequelize.import('user', UserModel);
-    sequelize.sync().then(()=>{
-        ctx.body = 'create'
+router.get('/remove',async function (ctx) {
+    await ctx.sequelize.drop().then(()=>{
+        ctx.body='删除成功'
     }).catch((err)=>{
         ctx.body=err
-    });
-});
-router.get('/remove', function (ctx) {
-    console.log('删除表中数据');
-    ctx.db.User.destroy()
+    })
 });
 
 module.exports = router;

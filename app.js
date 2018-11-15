@@ -22,14 +22,14 @@ app.use(function(ctx ,next){
 });
 app.use(async (ctx,next)=>{
     if(ctx.path=='/create'){
-        UserModel(sequelize);
+        sequelize.import('user',UserModel);
         await sequelize.sync({force:true}).then(()=>{
             ctx.body='success'
         }).catch(()=>{
             ctx.body='fail'
         });
     }
-    UserModel(sequelize);
+    sequelize.import('user',UserModel);
     ctx.sequelize=sequelize;
     return next()
 });

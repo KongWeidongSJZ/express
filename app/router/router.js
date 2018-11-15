@@ -7,7 +7,7 @@ router.post('/member/register', async (ctx) => {
     items.forEach(function(item){
         createItems[item['fieldName']]=item['value']
     });
-    await ctx.db.User.create().then((user)=>{
+    await ctx.sequelize.model('user').create(createItems).then((user)=>{
         ctx.body=config.SUCCESS({
             content:user
         })
